@@ -1,1 +1,1 @@
-<p>{{ date("Y") }}</p>
+<p>&copy; TMDB Test {{ date("Y") }}</p>

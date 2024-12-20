@@ -11,20 +11,20 @@
     </ul>
 
     <h3>Add a Comment</h3>
-    <form action="{{ route('comments.store', $movieData['id']) }}" method="POST">
+    <form novalidate action="{{ route('comments.store', $movieData['id']) }}" method="POST">
         @csrf
         <input type="hidden" name="movie_id" value="{{ $movieData['id'] }}">
         <input type="text" name="user_name" placeholder="Your Name" required>
-        @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
+        @error('user_name')
+        <div>{{ $message }}</div>
         @enderror
         <input type="text" name="comment" placeholder="Comment" required>
         @error('comment')
-        <div class="alert alert-danger">{{ $message }}</div>
+        <div>{{ $message }}</div>
         @enderror
         <input type="number" name="rating" min="1" max="5" placeholder="" required>
         @error('rating')
-        <div class="alert alert-danger">{{ $message }}</div>
+        <div>{{ $message }}</div>
         @enderror
         <input type="submit" value="Submit">
     </form>
