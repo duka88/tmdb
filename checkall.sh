@@ -1,15 +1,13 @@
 #!/bin/bash
 echo "Rollback all migrations"
 echo "========================================================================="
-php artisan migrate:reset
-echo "==================== Composer dump autoload===================="
-composer dump-autoload
+rm database/database.sqlite
 echo "==================== Artisan migrate===================="
 php artisan migrate
 echo "==================== Artisan db:seed===================="
 php artisan db:seed
-echo "======================================================"
+echo "===========================Git status==========================="
 echo "git status"
 git status
-echo "======================================================"
+echo "==================== Composer dump autoload===================="
 composer dump-autoload
