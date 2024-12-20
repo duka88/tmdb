@@ -15,8 +15,17 @@
         @csrf
         <input type="hidden" name="movie_id" value="{{ $movieData['id'] }}">
         <input type="text" name="user_name" placeholder="Your Name" required>
+        @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <input type="text" name="comment" placeholder="Comment" required>
+        @error('comment')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <input type="number" name="rating" min="1" max="5" placeholder="" required>
+        @error('rating')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <input type="submit" value="Submit">
     </form>
 
