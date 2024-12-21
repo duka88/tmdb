@@ -26,9 +26,8 @@ class CommentController extends Controller
             return redirect()->route('movies.show', ['id' => $request->movie_id]);
         }
 
-        request()->session()->flash('message', 'Successfully stored comment!');
 
-        return redirect()->back();
+        return  response()->json($request, 200);
     }
 
     public function getCommentsForMovie(int $movieId)

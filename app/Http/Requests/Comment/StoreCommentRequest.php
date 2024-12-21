@@ -24,7 +24,7 @@ class StoreCommentRequest extends FormRequest
         return [
             'movie_id' => 'required|integer',
             'user_name' => 'required|string',
-            'rating' => 'required|integer|between:1,5',
+            'rating' => 'required|integer|between:1,10',
             'comment' => 'required|string|between:32,255'
         ];
     }

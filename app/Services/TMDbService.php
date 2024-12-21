@@ -26,8 +26,8 @@ class TMDbService
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $this->apiKey,
         ])->get("{$this->baseUrl}/movie/popular", [
-            'page' => $page,
-        ]);
+                    'page' => $page,
+                ]);
 
         return $response->json();
     }
@@ -38,6 +38,20 @@ class TMDbService
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $this->apiKey,
         ])->get("{$this->baseUrl}/movie/{$id}");
+
+        return $response->json();
+    }
+
+    public function getComments($id, $page = 1)
+    {
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $this->apiKey,
+        ])->get("{$this->baseUrl}/movie/{$id}/reviews", [
+                    [
+                        'page' => $page,
+                    ]
+                ]);
 
         return $response->json();
     }

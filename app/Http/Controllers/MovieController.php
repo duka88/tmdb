@@ -37,6 +37,7 @@ class MovieController extends Controller
     {
         try {
             $movieData = $this->tmdbService->getMovieDetails($id);
+            $comments = $this->tmdbService->getComments($id, );
         } catch (\Exception $e) {
             Log::error('Error while getting Popular Movie details: ' . $e);
             request()->session()->flash('message', 'Error getting Popular Movie details!');
@@ -44,6 +45,23 @@ class MovieController extends Controller
             return redirect()->route('movies.index');
         }
 
-        return view('movies.show', compact('movieData'));
+        return view('movies.show', compact('movieData', 'comments'));
+    }
+
+    public function commentsPagination(int $id, int $page): Factory|View|Application|RedirectResponse
+    {
+        try {
+            $comments = $this->tmdbService->getComments($id, $page);
+        } catch (\Exception $e) {
+            Log::error('Error while getting Popular Movie details: ' . $e);
+            request()->session()->flash('message', 'Error getting Popular Movie details!');
+
+            return redirect()->route('movies.index');
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $comments,
+        ]);
     }
 }
